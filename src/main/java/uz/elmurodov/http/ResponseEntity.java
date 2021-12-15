@@ -7,8 +7,8 @@ import lombok.Getter;
  */
 @Getter
 public class ResponseEntity<D> {
-    private D body;
-    private Integer status;
+    private final D body;
+    private final Integer status;
 
     public ResponseEntity(D body) {
         this.body = body;

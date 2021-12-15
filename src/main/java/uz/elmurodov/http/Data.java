@@ -7,7 +7,7 @@ import lombok.Getter;
  */
 @Getter
 public class Data<T> {
-    private T data;
+    private final T data;
     private Integer total;
 
     public Data(T data) {
