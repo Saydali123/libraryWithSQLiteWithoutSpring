@@ -1,15 +1,19 @@
 package uz.elmurodov.ui.author;
 
+import uz.elmurodov.dto.author.AuthDto;
 import uz.elmurodov.dto.author.AuthorCreateDto;
 import uz.elmurodov.http.Data;
+import uz.elmurodov.http.HttpStatus;
 import uz.elmurodov.http.ResponseEntity;
 import uz.elmurodov.model.Author;
 import uz.elmurodov.service.author.AuthorService;
 import uz.elmurodov.utils.BaseUtils;
 import uz.jl.utils.Print;
 
+import java.time.Year;
 import java.util.List;
 
+import static uz.jl.utils.Color.*;
 import static uz.jl.utils.Input.getNum;
 import static uz.jl.utils.Input.getStr;
 
@@ -22,7 +26,7 @@ public class AuthorUI {
     public static void create() {
         String fullName = getStr("Full Name : ");
         String birthDateAsString = getStr("Please Your Birthdate(2021-01-23) : ");
-        authorService.create(new AuthorCreateDto(fullName, birthDateAsString));
+        ResponseEntity<Data<HttpStatus>> response = authorService.create(new AuthorCreateDto(fullName, birthDateAsString));
 //        show(response);
     }
 
@@ -36,14 +40,25 @@ public class AuthorUI {
     }
 
     public static void get() {
-        String str =getStr("Enter text to search: ");
-//        authorService.search(str);
-
+        String str = getStr("Enter text to search: ");
+        ResponseEntity<Data<List<AuthDto>>> response = authorService.search(str);
+        response.getBody().getData().forEach(n -> Print.println(YELLOW, n));
     }
 
     public static void update() {
+        authorService.getAll().getBody().getData().forEach(n -> Print.println(CYAN, n.getFullName()));
+        String str = getStr("Enter fullName: ");
+        if (authorService.checkNameForExisting(str)) {
+            Print.println(GREEN, "Name fount");
+            Print.println(GREEN, "-----------------------------------");
+            String birth = getStr("Enter birthday to update: ");
+            ResponseEntity<Data<String>> response = authorService.update(str, birth);
 
-
+            return;
+        } else {
+            Print.println(RED, "Wrong name");
+        }
+        update();
     }
 
     public static void delete() {
@@ -54,7 +69,7 @@ public class AuthorUI {
         id = getNum(str);
 //        } while (id < 1 || id > i);
 
-        authorService.delete(id);
+        ResponseEntity<Data<String>> response = authorService.delete(id);
     }
 
 

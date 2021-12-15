@@ -12,6 +12,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class BaseGenericDto implements BaseDto {
     private Long id;
+
 }
