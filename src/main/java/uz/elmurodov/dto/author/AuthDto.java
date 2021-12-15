@@ -3,6 +3,7 @@ package uz.elmurodov.dto.author;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import uz.elmurodov.dto.BaseGenericDto;
 import uz.elmurodov.model.Book;
 
@@ -14,6 +15,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 public class AuthDto extends BaseGenericDto {
     private String fullName;
     private String birthdate;
