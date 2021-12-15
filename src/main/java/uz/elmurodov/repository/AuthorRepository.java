@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +22,8 @@ public class AuthorRepository implements BaseRepository<Author> {
     public void save(Author entity) {
         try (Connection connection = DbConfig.conn();
              Statement statement = connection.createStatement()) {
-            statement.execute(PropertyConfig.get("query.create.author").formatted(entity.getFullName(), entity.getBirthdate()));
+            statement.execute(PropertyConfig.get("query.create.author").formatted(entity.getFullName(),
+                    entity.getBirthdate()));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -32,7 +32,7 @@ public class AuthorRepository implements BaseRepository<Author> {
     public List<Author> getAll() {
         List<Author> authors = new ArrayList<>();
         try (Connection connection = DbConfig.conn();
-             Statement statement = connection.createStatement();
+             Statement statement = connection.createStatement()
         ) {
             String sql = "select * from author;";
             ResultSet resultSet = statement.executeQuery(sql);
@@ -54,5 +54,16 @@ public class AuthorRepository implements BaseRepository<Author> {
     public static AuthorRepository getInstance() {
         if (instance == null) instance = new AuthorRepository();
         return instance;
+    }
+
+    public void delete(int authorId) {
+        try (Connection connection = DbConfig.conn();
+             Statement statement = connection.createStatement();
+        ) {
+            String sql = String.format("delete from author where id = %d;", authorId);
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

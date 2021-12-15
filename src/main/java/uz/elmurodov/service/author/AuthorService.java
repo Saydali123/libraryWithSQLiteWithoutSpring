@@ -22,10 +22,10 @@ public class AuthorService extends AbstractService<AuthorRepository, AuthorMappe
     }
 
 
-    public ResponseEntity<Data<Integer>> create(AuthorCreateDto dto) {
+    public ResponseEntity<Data<HttpStatus>> create(AuthorCreateDto dto) {
         Author author = mapper.fromCreateDto(dto);
         repository.save(author);
-        return new ResponseEntity<>(new Data<>(12));
+        return new ResponseEntity<>(new Data<>(HttpStatus.HTTP_OK));
     }
 
     public ResponseEntity<Data<List<Author>>> getAll() {
@@ -37,5 +37,13 @@ public class AuthorService extends AbstractService<AuthorRepository, AuthorMappe
     public static AuthorService getInstance() {
         if (instance == null) instance = new AuthorService();
         return instance;
+    }
+
+    public ResponseEntity<Data<String>> delete(int id) {
+
+
+        repository.delete(id);
+        return new ResponseEntity<>(new Data<>("Deleted"));
+
     }
 }
