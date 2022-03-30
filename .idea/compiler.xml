@@ -7,11 +7,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="reforma_SQLite" />
         <module name="reforma_group" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="reforma_group" target="17" />
+      <module name="reforma_SQLite" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
