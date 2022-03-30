@@ -1,9 +1,9 @@
 package uz.elmurodov;
 
 import uz.elmurodov.ui.author.AuthorMenu;
-import uz.jl.utils.Color;
-import uz.jl.utils.Input;
-import uz.jl.utils.Print;
+import uz.elmurodov.utils.Color;
+import uz.elmurodov.utils.Input;
+import uz.elmurodov.utils.Print;
 
 
 /**

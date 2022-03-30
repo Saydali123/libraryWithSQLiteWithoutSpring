@@ -1,8 +1,8 @@
 package uz.elmurodov.ui.author;
 
 import uz.elmurodov.utils.BaseUtils;
-import uz.jl.utils.Color;
-import uz.jl.utils.Print;
+import uz.elmurodov.utils.Color;
+import uz.elmurodov.utils.Print;
 
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ public class AuthorMenu {
         Print.println("All -> 5");
         Print.println("Back -> 6");
         Scanner scanner = BaseUtils.getInt;
-            Print.print("?:");
+        Print.print("?:");
         if (scanner.hasNextInt()) {
             switch (scanner.nextInt()) {
                 case 1 -> AuthorUI.create();
