@@ -8,14 +8,13 @@ import uz.elmurodov.http.ResponseEntity;
 import uz.elmurodov.model.Author;
 import uz.elmurodov.service.author.AuthorService;
 import uz.elmurodov.utils.BaseUtils;
-import uz.jl.utils.Print;
+import uz.elmurodov.utils.Print;
 
-import java.time.Year;
 import java.util.List;
 
-import static uz.jl.utils.Color.*;
-import static uz.jl.utils.Input.getNum;
-import static uz.jl.utils.Input.getStr;
+import static uz.elmurodov.utils.Color.*;
+import static uz.elmurodov.utils.Input.getNum;
+import static uz.elmurodov.utils.Input.getStr;
 
 /**
  * @author Elmurodov Javohir, Tue 3:45 PM. 12/14/2021
@@ -26,7 +25,8 @@ public class AuthorUI {
     public static void create() {
         String fullName = getStr("Full Name : ");
         String birthDateAsString = getStr("Please Your Birthdate(2021-01-23) : ");
-        ResponseEntity<Data<HttpStatus>> response = authorService.create(new AuthorCreateDto(fullName, birthDateAsString));
+        ResponseEntity<Data<HttpStatus>> response = authorService.
+                create(new AuthorCreateDto(fullName, birthDateAsString));
 //        show(response);
     }
 
